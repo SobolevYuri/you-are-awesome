@@ -47,7 +47,19 @@ const returnBackInSecond = (PingParam) => {
     setTimeout(() => {resolve(PingParam);},1100);}));
 };
 
-const getDeepPropertiesCount = () => {};
+const getDeepPropertiesCount = (objTarget) => {
+//return (JSON.stringify(objTarget)).split('{').length-2;
+let amount=0;
+function getAmount(objTarget){
+for(let i in objTarget){
+  if(typeof objTarget[i] == "object") getAmount(objTarget[i])
+
+  amount++;
+}
+return amount;
+}
+return getAmount(objTarget);
+}
 
 const createSerializedObject = () => {
   var obj={
